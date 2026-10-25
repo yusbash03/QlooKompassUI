@@ -1,0 +1,37 @@
+# Dependencies
+node_modules
+
+# Build output & caches
+dist
+dev-dist
+*.tsbuildinfo
+.vite
+.eslintcache
+
+# Test output
+coverage
+playwright-report
+test-results
+blob-report
+playwright/.cache
+
+# Environment (only .env.example is committed — nothing secret ever goes in VITE_*)
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Duplicate Claude Design exports — the canonical copies live in Design/claude-design/.
+# MdFiles/design keeps only the written design brief (magic-patterns.md).
+MdFiles/design/*.dc.html
+MdFiles/design/support.js
+MdFiles/design/uploads/

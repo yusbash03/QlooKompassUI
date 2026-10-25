@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<aside style="height:100%;box-sizing:border-box;background:#14122B;color:#F4F1EA;padding:22px 14px;display:flex;flex-direction:column;gap:4px">
+  <div style="display:flex;align-items:center;gap:10px;padding:0 8px 22px"><div style="width:28px;height:28px;border-radius:50%;background:#F4F1EA;display:grid;place-items:center"><div style="width:6px;height:16px;background:linear-gradient(#F2A20C 50%,#14122B 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div></div><span style="font:600 17px 'Space Grotesk'">Kulture Compass</span></div>
+  <sc-for list="{{ items }}" as="it" hint-placeholder-count="4">
+    <div style="padding:10px 12px;border-radius:10px;font:500 14px Inter;display:flex;align-items:center;gap:10px;background:{{ it.bg }};color:{{ it.c }}"><span style="width:3px;height:16px;border-radius:2px;background:{{ it.bar }}"></span><span style="flex:1">{{ it.name }}</span><sc-if value="{{ it.dev }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'JetBrains Mono';color:#FBBF24;border:1px solid #6B4E0E;border-radius:4px;padding:2px 5px">DEV</span></sc-if></div>
+  </sc-for>
+  <div style="flex:1"></div>
+  <div style="border-top:1px solid #34305A;padding-top:12px;display:flex;flex-direction:column;gap:2px;font:500 13px Inter;color:#B9B5D6">
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 12px"><span style="width:28px;height:28px;border-radius:50%;background:#C2410C;display:grid;place-items:center;font:600 12px Inter;color:#fff;flex:none">A</span><span style="display:flex;flex-direction:column"><span style="color:#F4F1EA">Adaeze O.</span><span style="font-size:12px">adaeze@ekothread.example</span></span></div>
+    <div style="padding:6px 12px">Install app</div><div style="padding:6px 12px">Remove offline copies</div><div style="padding:6px 12px">Sign out</div>
+  </div>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:240,&quot;height&quot;:760},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Plans&quot;,&quot;New brief&quot;,&quot;Experiments&quot;,&quot;Evaluation&quot;],&quot;default&quot;:&quot;Plans&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'Plans';
+    const items = ['Plans', 'New brief', 'Experiments', 'Evaluation'].map(name => ({
+      name, dev: name === 'Evaluation', bg: name === a ? '#2A2748' : 'transparent',
+      c: name === a ? '#F4F1EA' : '#B9B5D6', bar: name === a ? '#FB923C' : 'transparent'
+    }));
+    return { items };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet"><style>body{margin:0;background:#ECE7DF;font-family:Inter,system-ui,sans-serif;color:#14122B}a{color:#C2410C}a:hover{color:#9A3412}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08)}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style></helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">App shell, saved plans, brief form, generate &amp; progress (§4.3–4.5)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Saved plans · populated</div>
+<div class="dv-card" style="width:1280px;height:820px;display:grid;grid-template-columns:240px 1fr;background:#FAF7F2">
+  <aside style="background:#14122B;color:#F4F1EA;padding:22px 14px;display:flex;flex-direction:column;gap:4px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px 22px"><div style="width:28px;height:28px;border-radius:50%;background:#F4F1EA;display:grid;place-items:center"><div style="width:6px;height:16px;background:linear-gradient(#F2A20C 50%,#14122B 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div></div><span style="font:600 17px 'Space Grotesk'">Kulture Compass</span></div>
+    <div style="padding:10px 12px;border-radius:10px;background:#2A2748;font:600 14px Inter;display:flex;align-items:center;gap:10px"><span style="width:3px;height:16px;border-radius:2px;background:#FB923C"></span>Saved plans</div>
+    <div style="padding:10px 12px 10px 25px;border-radius:10px;font:500 14px Inter;color:#B9B5D6">New brief</div>
+    <div style="padding:10px 12px 10px 25px;border-radius:10px;font:500 14px Inter;color:#B9B5D6;display:flex;justify-content:space-between">Evaluation<span style="font:600 10px 'JetBrains Mono';color:#FBBF24;border:1px solid #6B4E0E;border-radius:4px;padding:2px 5px">DEV</span></div>
+    <div style="flex:1"></div>
+    <div style="border-top:1px solid #34305A;padding-top:12px;display:flex;flex-direction:column;gap:2px;font:500 13px Inter;color:#B9B5D6">
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;color:#F4F1EA"><span style="width:26px;height:26px;border-radius:50%;background:#C2410C;display:grid;place-items:center;font:600 12px Inter;color:#fff">A</span>Adaeze · Eko Thread</div>
+      <div style="padding:6px 12px">Install app</div><div style="padding:6px 12px">Remove offline copies</div><div style="padding:6px 12px">Sign out</div>
+    </div>
+  </aside>
+  <main style="display:flex;flex-direction:column;min-width:0">
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:14px 32px;border-bottom:1px solid #E7E1D8;font:500 13px Inter;color:#5B5880"><span style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#15803D"></span>Online</span><span style="padding:6px 10px;border-radius:999px;background:#F3EEE6;color:#14122B">7 of 10 plans left today</span></div>
+    <div style="padding:28px 32px;display:flex;flex-direction:column;gap:20px;min-height:0">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><h1 style="margin:0;font:600 36px 'Space Grotesk';letter-spacing:-.02em">Saved plans</h1><div style="font:400 14px Inter;color:#5B5880;margin-top:4px">6 plans across 2 brand profiles</div></div><button style="font:600 14px Inter;background:#C2410C;color:#fff;border:0;border-radius:10px;padding:11px 18px">+ New brief</button></div>
+      <div style="display:flex;gap:10px">
+        <label style="display:flex;align-items:center;gap:8px;font:500 13px Inter;color:#5B5880">Profile<span style="font:500 14px Inter;color:#14122B;background:#fff;border:1px solid #D8D0C4;border-radius:10px;padding:8px 12px">All profiles ▾</span></label>
+        <label style="display:flex;align-items:center;gap:8px;font:500 13px Inter;color:#5B5880">Status<span style="font:500 14px Inter;color:#14122B;background:#fff;border:1px solid #D8D0C4;border-radius:10px;padding:8px 12px">Any status ▾</span></label>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="6">
+          <div style="background:#fff;border:1px solid #E7E1D8;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(20,18,43,.04)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font:500 12px Inter;color:#5B5880">{{ p.brand }}</span><span style="font:600 11px Inter;padding:4px 9px;border-radius:999px;color:{{ p.sc }};background:{{ p.sb }}">{{ p.status }}</span></div>
+            <div style="font:600 18px/1.3 'Space Grotesk';min-height:46px">{{ p.headline }}</div>
+            <div style="display:flex;gap:14px;font:500 12px Inter;color:#5B5880;border-top:1px solid #F0EAE1;padding-top:10px"><span>{{ p.counts }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font:400 12px Inter;color:#5B5880"><span>{{ p.date }}</span><span style="display:flex;gap:6px"><sc-if value="{{ p.offline }}" hint-placeholder-val="{{ false }}"><span style="font:600 11px Inter;color:#14122B;background:#F3EEE6;padding:3px 8px;border-radius:999px">↓ Offline copy</span></sc-if><sc-if value="{{ p.mock }}" hint-placeholder-val="{{ false }}"><span style="font:600 10px 'JetBrains Mono';color:#FBBF24;background:#14122B;padding:3px 7px;border-radius:4px">MOCK</span></sc-if></span></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;justify-content:center;gap:6px;font:500 13px Inter"><span style="padding:7px 12px;border-radius:8px;color:#8A87A6">← Prev</span><span style="padding:7px 12px;border-radius:8px;background:#14122B;color:#fff">1</span><span style="padding:7px 12px;border-radius:8px">2</span><span style="padding:7px 12px;border-radius:8px">Next →</span></div>
+    </div>
+  </main>
+</div></div>
+
+<div class="dv-opt" id="2b"><div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Saved plans · empty · mobile</div>
+<div class="dv-card" style="width:390px;height:820px;background:#FAF7F2;display:flex;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #E7E1D8"><span style="font:600 20px 'Space Grotesk'">Plans</span><span style="font:500 12px Inter;padding:5px 9px;border-radius:999px;background:#F3EEE6">10 of 10 left today</span></div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px;text-align:center;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(0deg,#14122B 0 1px,transparent 1px 26px),repeating-linear-gradient(90deg,#14122B 0 1px,transparent 1px 26px),repeating-linear-gradient(45deg,#14122B 0 1px,transparent 1px 37px)"></div>
+    <div style="position:relative;width:120px;height:120px;border-radius:50%;border:2px solid #14122B;display:grid;place-items:center"><div style="position:absolute;inset:14px;border-radius:50%;border:1px dashed #C9BFB0"></div><div style="width:20px;height:72px;background:linear-gradient(#F2A20C 50%,#14122B 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);transform:rotate(35deg)"></div></div>
+    <div style="position:relative;font:600 26px 'Space Grotesk'">No plans yet</div>
+    <div style="position:relative;font:400 15px/1.5 Inter;color:#5B5880">Start with a short brief about your brand. Your first plan takes about a minute.</div>
+    <button style="position:relative;font:600 15px Inter;background:#C2410C;color:#fff;border:0;border-radius:10px;padding:13px 20px">Create your brand brief</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #E7E1D8;background:#fff;padding:8px 0 18px;font:600 12px Inter;text-align:center">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#C2410C;padding:6px"><span style="width:22px;height:22px;border-radius:6px;border:2px solid currentColor;box-sizing:border-box"></span>Plans</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#5B5880;padding:6px"><span style="width:22px;height:22px;border-radius:50%;border:2px solid currentColor;box-sizing:border-box;display:grid;place-items:center;font:700 14px/1 Inter">+</span>New</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#5B5880;padding:6px"><span style="width:22px;height:22px;border-radius:50%;background:currentColor;opacity:.7"></span>Account</div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="2c"><div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Brief · step 3 Goals · with validation + server error</div>
+<div class="dv-card" style="width:1040px;background:#FAF7F2;padding:32px 48px 40px;display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;gap:0">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <span style="width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:600 12px Inter;flex:none;background:{{ s.bg }};color:{{ s.fg }};border:{{ s.bd }}">{{ s.mark }}</span>
+        <span style="font:600 13px Inter;color:{{ s.tc }};white-space:nowrap">{{ s.label }}</span>
+        <span style="flex:1;height:2px;background:#E7E1D8;margin:0 12px"></span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:10px;background:#FEF2F2;border:1px solid #F5C2C2;font:500 13px Inter;color:#B91C1C"><span style="flex:1">We couldn't save your brief. Your answers are kept on this device.</span><button style="font:600 13px Inter;background:#fff;color:#B91C1C;border:1px solid #F5C2C2;border-radius:8px;padding:6px 12px">Retry</button></div>
+  <div style="background:#fff;border:1px solid #E7E1D8;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:26px">
+    <div><div style="font:500 13px Inter;color:#5B5880">Step 3 of 5</div><h2 style="margin:4px 0 0;font:600 28px 'Space Grotesk'">What do you want this plan to do?</h2></div>
+    <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px"><legend style="font:600 14px Inter;margin-bottom:10px">Marketing objective</legend>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <sc-for list="{{ objectives }}" as="o" hint-placeholder-count="6">
+          <div style="border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;border:{{ o.bd }};background:{{ o.bg }}"><span style="font:600 15px 'Space Grotesk'">{{ o.name }}</span><span style="font:400 12px/1.4 Inter;color:#5B5880">{{ o.desc }}</span></div>
+        </sc-for>
+      </div>
+    </fieldset>
+    <label style="display:flex;flex-direction:column;gap:6px;font:600 14px Inter">Notes <span style="font:400 13px Inter;color:#5B5880;margin-top:-4px">Anything we should know — launch dates, constraints.</span><textarea style="font:400 14px Inter;padding:12px;border:1px solid #D8D0C4;border-radius:10px;height:70px;resize:none">Launching a December capsule ahead of Detty December.</textarea></label>
+    <fieldset style="border:0;padding:0;margin:0"><legend style="font:600 14px Inter;color:#B91C1C;margin-bottom:10px">Budget range (NGN)</legend>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ budgets }}" as="b" hint-placeholder-count="5"><span style="font:500 14px Inter;border:1px solid #D8D0C4;background:#fff;border-radius:999px;padding:9px 16px">{{ b }}</span></sc-for></div>
+      <div style="font:400 12px Inter;color:#B91C1C;margin-top:8px">Pick a range, or choose "Not sure".</div>
+    </fieldset>
+  </div>
+  <div style="display:flex;justify-content:space-between"><button style="font:600 14px Inter;background:transparent;color:#14122B;border:0;padding:11px 4px">← Back</button><div style="display:flex;gap:10px"><button style="font:600 14px Inter;background:#fff;color:#14122B;border:1px solid #D8D0C4;border-radius:10px;padding:10px 17px">Save draft</button><button style="font:600 14px Inter;background:#C2410C;color:#fff;border:0;border-radius:10px;padding:11px 20px">Continue</button></div></div>
+</div></div>
+
+<div class="dv-opt" id="2d"><div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Brief · step 4 references · mobile</div>
+<div class="dv-card" style="width:390px;background:#FAF7F2;padding:16px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:center;justify-content:space-between"><span style="font:600 13px Inter;color:#5B5880">← Back</span><span style="font:600 13px Inter">Step 4 of 5</span><span style="font:500 13px Inter;color:#5B5880">Skip</span></div>
+  <div style="height:4px;border-radius:999px;background:#E7E1D8"><div style="width:80%;height:100%;border-radius:999px;background:#C2410C"></div></div>
+  <h2 style="margin:4px 0 0;font:600 26px/1.15 'Space Grotesk'">Cultural references <span style="font:400 15px Inter;color:#5B5880">(optional)</span></h2>
+  <label style="display:flex;flex-direction:column;gap:8px;font:600 14px Inter">Brands, artists, places or shows your customers love
+    <div style="display:flex;gap:8px"><span style="font:500 14px Inter;background:#fff;border:1px solid #D8D0C4;border-radius:10px;padding:10px">Artist ▾</span><input placeholder="Type a name" style="flex:1;min-width:0;font:400 14px Inter;padding:10px 12px;border:1.5px solid #2563EB;border-radius:10px"></div>
+  </label>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">
+    <sc-for list="{{ refs }}" as="r" hint-placeholder-count="4"><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #D8D0C4;border-radius:999px;padding:6px 8px 6px 12px;font:500 13px Inter">{{ r.name }}<span style="font:600 11px Inter;color:#5B5880;background:#F3EEE6;border-radius:999px;padding:2px 8px">{{ r.kind }} ▾</span><span style="color:#5B5880">×</span></span></sc-for>
+  </div>
+  <div style="font:400 13px/1.5 Inter;color:#0F766E;background:#E6F4F2;border-radius:10px;padding:12px">We'll look these up in Qloo — unmatched names will be listed, not guessed.</div>
+  <button style="font:600 15px Inter;background:#C2410C;color:#fff;border:0;border-radius:10px;padding:14px;margin-top:8px">Continue to review</button>
+</div></div>
+
+<div class="dv-opt" id="2e"><div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Generate · offline-disabled state</div>
+<div class="dv-card" style="width:560px;background:#FAF7F2;padding:28px;display:flex;flex-direction:column;gap:16px">
+  <h2 style="margin:0;font:600 28px 'Space Grotesk'">Generate your plan</h2>
+  <div style="background:#fff;border:1px solid #E7E1D8;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;justify-content:space-between"><span style="font:600 18px 'Space Grotesk'">Eko Thread Co.</span><a href="#" style="font:600 13px Inter">Edit brief</a></div>
+    <div style="font:400 14px/1.5 Inter;color:#5B5880">Streetwear · Lagos · Launch · ₦500k–₦2m · 4 cultural references</div>
+  </div>
+  <div style="background:#fff;border:1px solid #E7E1D8;border-radius:12px;padding:4px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #F0EAE1"><div><div style="font:600 14px Inter">Include collaborations</div><div style="font:400 13px Inter;color:#5B5880">Suggest partner brands, artists and places</div></div><span style="width:42px;height:24px;border-radius:999px;background:#C2410C;position:relative"><span style="position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff"></span></span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0"><div style="font:600 14px Inter">Max campaigns</div><div style="display:flex;border:1px solid #D8D0C4;border-radius:10px;overflow:hidden;font:600 14px Inter"><span style="padding:8px 14px">1</span><span style="padding:8px 14px;background:#14122B;color:#fff">2</span><span style="padding:8px 14px">3</span></div></div>
+  </div>
+  <div style="font:400 13px Inter;color:#5B5880">Uses 1 of your 7 remaining plans today.</div>
+  <div style="display:flex;gap:10px;padding:12px 14px;border-radius:10px;background:#14122B;color:#F4F1EA;font:400 13px/1.5 Inter"><span style="width:8px;height:8px;border-radius:50%;background:#9CA3AF;margin-top:6px;flex:none"></span><span><strong style="font-weight:600">You're offline.</strong> Generating needs a connection to our research service.</span></div>
+  <button disabled style="font:600 15px Inter;background:#E7E1D8;color:#8A87A6;border:0;border-radius:10px;padding:14px">Generate cultural growth plan</button>
+</div></div>
+
+<div class="dv-opt" id="2f"><div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Research progress · active</div>
+<div class="dv-card" style="width:520px;background:#FAF7F2;padding:28px;display:flex;flex-direction:column;gap:18px">
+  <div><div style="font:500 13px Inter;color:#5B5880">Eko Thread Co.</div><h2 style="margin:4px 0 0;font:600 28px 'Space Grotesk'">Building your plan</h2></div>
+  <div style="background:#fff;border:1px solid #E7E1D8;border-radius:12px;padding:20px 20px 8px">
+    <sc-for list="{{ stages }}" as="s" hint-placeholder-count="8">
+      <div style="display:flex;gap:14px">
+        <div style="display:flex;flex-direction:column;align-items:center"><span style="width:22px;height:22px;border-radius:50%;box-sizing:border-box;display:grid;place-items:center;font:700 11px Inter;flex:none;background:{{ s.bg }};color:#fff;border:{{ s.bd }}">{{ s.mark }}</span><span style="width:2px;flex:1;min-height:14px;background:{{ s.line }}"></span></div>
+        <div style="padding-bottom:14px"><div style="font:600 14px Inter;color:{{ s.tc }}">{{ s.name }}</div><div style="font:400 12px Inter;color:#5B5880">{{ s.detail }}</div></div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="font:400 13px/1.5 Inter;color:#5B5880">Usually takes 30–90 seconds. You can leave this page — we'll keep working.</div>
+</div></div>
+
+<div class="dv-opt" id="2g"><div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a>Research progress · failed</div>
+<div class="dv-card" style="width:440px;background:#FAF7F2;padding:28px;display:flex;flex-direction:column;gap:16px">
+  <h2 style="margin:0;font:600 28px 'Space Grotesk'">We couldn't finish this plan</h2>
+  <div style="background:#fff;border:1px solid #E7E1D8;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;font:500 14px Inter">
+    <div style="display:flex;gap:10px;align-items:center;color:#5B5880"><span style="width:20px;height:20px;border-radius:50%;background:#15803D;color:#fff;display:grid;place-items:center;font:700 11px Inter">✓</span>Retrieving evidence from Qloo</div>
+    <div style="display:flex;gap:10px;align-items:center;color:#5B5880"><span style="width:20px;height:20px;border-radius:50%;background:#15803D;color:#fff;display:grid;place-items:center;font:700 11px Inter">✓</span>Generating recommendations</div>
+    <div style="display:flex;gap:10px;align-items:center;color:#B91C1C;font-weight:600"><span style="width:20px;height:20px;border-radius:50%;background:#B91C1C;color:#fff;display:grid;place-items:center;font:700 11px Inter">!</span>Validating output</div>
+  </div>
+  <div style="font:400 14px/1.55 Inter;color:#14122B">Some recommendations couldn't be linked to retrieved evidence, so we stopped rather than show them. Your brief is saved and this attempt didn't use your daily quota.</div>
+  <div style="display:flex;gap:10px"><button style="font:600 14px Inter;background:#fff;color:#14122B;border:1px solid #D8D0C4;border-radius:10px;padding:11px 18px">Edit brief</button><button style="font:600 14px Inter;background:#C2410C;color:#fff;border:0;border-radius:10px;padding:12px 20px">Try again</button></div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "step 5 review screen" · "list view variant of <a class="dv-oid" href="#2a">2a</a>" · "mobile progress"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const S = {
+      Completed: ['#15803D', '#ECFDF3'], 'Completed with limitations': ['#B45309', '#FEF3C7'],
+      Running: ['#C2410C', '#FFF1E8'], Queued: ['#5B5880', '#F3EEE6'], Failed: ['#B91C1C', '#FEF2F2']
+    };
+    const plans = [
+      ['Eko Thread Co.', 'December capsule with Afro-fusion music crossover', 'Completed', '3 insights · 2 collabs · 2 campaigns · 3 exp.', 'Oct 22, 2026', true, false],
+      ['Eko Thread Co.', 'Building community around adire craft', 'Completed with limitations', '3 insights · 1 collab · 2 campaigns · 2 exp.', 'Oct 19, 2026', false, false],
+      ['Sample Brand Z', 'Abuja launch for everyday footwear', 'Running', 'Retrieving evidence…', 'Oct 24, 2026', false, false],
+      ['Eko Thread Co.', 'Partnership-led growth for Q1', 'Queued', 'Waiting to start', 'Oct 24, 2026', false, false],
+      ['Sample Brand Z', 'Awareness with campus audiences', 'Failed', 'Validation didn\u2019t pass', 'Oct 15, 2026', false, false],
+      ['Eko Thread Co.', 'Sample plan for demos', 'Completed', '3 insights · 2 collabs · 2 campaigns · 3 exp.', 'Oct 10, 2026', true, true]
+    ].map(([brand, headline, status, counts, date, offline, mock]) => ({ brand, headline, status, counts, date, offline, mock, sc: S[status][0], sb: S[status][1] }));
+    const steps = ['Brand', 'Products & market', 'Goals', 'References', 'Review'].map((label, i) => {
+      const done = i < 2, active = i === 2;
+      return { label, mark: done ? '✓' : String(i + 1), bg: done ? '#14122B' : active ? '#C2410C' : '#fff', fg: done || active ? '#fff' : '#5B5880', bd: done || active ? '0' : '1px solid #D8D0C4', tc: i <= 2 ? '#14122B' : '#5B5880' };
+    });
+    const objectives = [['Awareness', 'Get known by new audiences'], ['Engagement', 'Deepen interaction with followers'], ['Sales', 'Drive orders and conversions'], ['Launch', 'Introduce a new product or drop'], ['Community', 'Build belonging around the brand'], ['Partnerships', 'Find aligned collaborators']]
+      .map(([name, desc]) => ({ name, desc, bd: name === 'Launch' ? '2px solid #C2410C' : '1px solid #E7E1D8', bg: name === 'Launch' ? '#FFF1E8' : '#fff' }));
+    const budgets = ['Under ₦100k', '₦100k–₦500k', '₦500k–₦2m', 'Over ₦2m', 'Not sure'];
+    const refs = [['Sample Artist A', 'Artist'], ['Sample Brand B', 'Brand'], ['Sample Place C', 'Place'], ['Sample Show D', 'Media']].map(([name, kind]) => ({ name, kind }));
+    const st = [
+      ['Interpreting brief', 'Read 5 sections', 'done'], ['Planning research', '9 Qloo requests planned', 'done'],
+      ['Retrieving evidence from Qloo', '4 of 9 Qloo requests complete', 'active'], ['Evaluating evidence', '', 'pending'],
+      ['Generating recommendations', '', 'pending'], ['Validating output', '', 'pending'], ['Designing experiments', '', 'pending'], ['Saving', '', 'pending']
+    ];
+    const stages = st.map(([name, detail, s], i) => ({
+      name, detail, mark: s === 'done' ? '✓' : '',
+      bg: s === 'done' ? '#15803D' : s === 'active' ? '#C2410C' : '#fff',
+      bd: s === 'pending' ? '2px solid #D8D0C4' : s === 'active' ? '4px solid #FDD8C2' : '0',
+      line: i === st.length - 1 ? 'transparent' : s === 'done' ? '#15803D' : '#E7E1D8',
+      tc: s === 'pending' ? '#5B5880' : '#14122B'
+    }));
+    return { plans, steps, objectives, budgets, refs, stages };
+  }
+}
+</script>
+</body>
+</html>
