@@ -38,8 +38,9 @@ export function ExperimentCard({
   return (
     <article
       id={experiment.id}
+      tabIndex={-1}
       aria-labelledby={`${experiment.id}-title`}
-      className="scroll-mt-24 rounded-(--radius-card) border border-border bg-surface"
+      className="scroll-mt-24 rounded-(--radius-card) border border-border bg-surface outline-none focus-visible:ring-2 focus-visible:ring-focus"
     >
       <header className="flex flex-col gap-4 border-b border-border px-5 py-5 md:flex-row md:items-start md:justify-between md:px-6">
         <div className="max-w-2xl">

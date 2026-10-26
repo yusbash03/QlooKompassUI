@@ -1,5 +1,6 @@
 import { useQueryClient, type QueryClient } from '@tanstack/react-query';
 import { useCallback } from 'react';
+import { outcomeStore } from '@/features/experiments/outcome-store';
 import { deleteOfflineStore } from '@/features/offline/offlineStore';
 import { draftStore } from '@/features/profiles/draftStore';
 import { clearIdempotencyKeys } from '@/shared/lib/idempotency';
@@ -9,6 +10,7 @@ export async function clearUserData(queryClient: QueryClient, userId: string): P
   queryClient.clear();
   clearIdempotencyKeys();
   draftStore.clear(userId);
+  outcomeStore.clear();
   await deleteOfflineStore(userId);
 }
 

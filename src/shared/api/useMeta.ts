@@ -7,6 +7,8 @@ export function useMeta() {
     queryKey: queryKeys.meta,
     queryFn: () => unwrap(api.GET('/api/v1/meta')),
     staleTime: 5 * 60_000,
+    // Offline, still ask: the service worker answers from its cache (FE-01 §7).
+    networkMode: 'offlineFirst',
   });
 }
 

@@ -33,7 +33,11 @@ export function AuthShell({
         <p className="relative text-xs text-[#B9B5D6]">Powered by Qloo cultural intelligence</p>
       </aside>
 
-      <main id="main" className="flex flex-col items-center justify-center px-4 py-12 md:px-8">
+      <main
+        id="main"
+        tabIndex={-1}
+        className="flex flex-col items-center justify-center px-4 py-12 outline-none md:px-8"
+      >
         <Link to="/" className="mb-10 self-center rounded-md lg:hidden" aria-label="Kulture Compass home">
           <Logo />
         </Link>

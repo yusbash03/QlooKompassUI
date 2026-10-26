@@ -1,0 +1,68 @@
+# 03-testing-strategy §5: install, typecheck, lint, test, build — plus the Playwright e2e (mock mode) and the image build.
+name: frontend
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test
+      - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # Starts the stand-in API (e2e/mock-api) and `vite preview` itself (playwright.config.ts).
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
+
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t kompass-web:ci .
+      - name: Serves the shell with cache and security headers
+        run: |
+          docker run -d --name web -p 8080:80 kompass-web:ci
+          for i in $(seq 1 20); do curl -fs http://localhost:8080/healthz && break; sleep 1; done
+          curl -fsI http://localhost:8080/app/plans | tee headers.txt
+          grep -qi '^cache-control: no-cache' headers.txt
+          grep -qi '^content-security-policy:' headers.txt
+          curl -fsI http://localhost:8080/sw.js | grep -qi '^cache-control: no-cache'

@@ -3,16 +3,24 @@ import { fileURLToPath, URL } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import { envSecretGuard } from './build/env-guard.ts';
+import { pwaOptions } from './build/pwa.ts';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   const proxyTarget = env.VITE_DEV_API_PROXY_TARGET || 'http://localhost:5206';
 
   return {
-    plugins: [envSecretGuard(), react(), tailwindcss()],
+    plugins: [envSecretGuard(), react(), tailwindcss(), VitePWA(pwaOptions)],
     resolve: {
-      alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        // The real module needs a service worker build; tests use a controllable stand-in.
+        ...(process.env.VITEST && {
+          'virtual:pwa-register/react': fileURLToPath(new URL('./src/test/pwa-register-stub.ts', import.meta.url)),
+        }),
+      },
     },
     server: {
       port: 5173,

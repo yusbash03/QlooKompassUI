@@ -79,7 +79,14 @@ export function CardDisclosure({ label, items }: { label: string; items: string[
 
 export function ReportCard({ children, className, id }: { children: ReactNode; className?: string; id?: string }) {
   return (
-    <article id={id} className={cn('scroll-mt-24 rounded-(--radius-card) border border-border bg-surface', className)}>
+    <article
+      id={id}
+      tabIndex={-1}
+      className={cn(
+        'scroll-mt-24 rounded-(--radius-card) border border-border bg-surface outline-none focus-visible:ring-2 focus-visible:ring-focus',
+        className,
+      )}
+    >
       {children}
     </article>
   );

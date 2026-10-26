@@ -10,6 +10,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
   const session = useSyncExternalStore(tokenStore.subscribe, tokenStore.get, tokenStore.get);
   const [restoring, setRestoring] = useState(() => tokenStore.get() === null);
+  const [unreachable, setUnreachable] = useState(false);
   const channel = useRef<AuthChannel | null>(null);
   const pendingCleanup = useRef<Promise<void>>(Promise.resolve());
 
@@ -17,13 +18,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!restoring) return;
     let active = true;
-    void refreshSession().finally(() => {
-      if (active) setRestoring(false);
-    });
+    void refreshSession()
+      .then((result) => {
+        if (active) setUnreachable(result.kind === 'network');
+      })
+      .finally(() => {
+        if (active) setRestoring(false);
+      });
     return () => {
       active = false;
     };
   }, [restoring]);
+
+  // Started offline: try again as soon as the connection is back, so the user lands where they were heading.
+  useEffect(() => {
+    if (!unreachable) return;
+    const retry = () => setRestoring(true);
+    window.addEventListener('online', retry);
+    return () => window.removeEventListener('online', retry);
+  }, [unreachable]);
 
   // Every way a session ends or changes hands (sign-out, refresh rejected, other tab, user switch) cleans up here.
   useEffect(
@@ -84,13 +97,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<AuthContextValue>(
     () => ({
-      status: session ? 'authenticated' : restoring ? 'loading' : 'anonymous',
+      status: session ? 'authenticated' : restoring ? 'loading' : unreachable ? 'unreachable' : 'anonymous',
       user: session?.user ?? null,
       signIn,
       signUp,
       signOut,
     }),
-    [session, restoring, signIn, signUp, signOut],
+    [session, restoring, unreachable, signIn, signUp, signOut],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

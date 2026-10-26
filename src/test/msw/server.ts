@@ -1,7 +1,4 @@
 import { setupServer } from 'msw/node';
-import { authHandlers } from './handlers/auth';
-import { metaHandlers } from './handlers/meta';
-import { profileHandlers } from './handlers/profiles';
-import { quotaHandlers } from './handlers/quota';
+import { handlers } from './handlers';
 
-export const server = setupServer(...metaHandlers, ...authHandlers, ...profileHandlers, ...quotaHandlers);
+export const server = setupServer(...handlers);

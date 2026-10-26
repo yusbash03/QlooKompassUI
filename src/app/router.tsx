@@ -6,16 +6,11 @@ import { FullPageStatus } from '@/shared/ui/FullPageStatus';
 import { RouteErrorBoundary } from './ErrorBoundary';
 import { EvaluationGate } from './EvaluationGate';
 import { NotFoundPage } from './NotFoundPage';
-import { PlaceholderPage } from './PlaceholderPage';
 import { RootLayout } from './RootLayout';
 
 /** Route-level code splitting: `lazy` resolves a module's export into the route's Component. */
 function page<M>(load: () => Promise<M>, pick: (module: M) => ComponentType): Pick<RouteObject, 'lazy'> {
   return { lazy: async () => ({ Component: pick(await load()) }) };
-}
-
-function placeholder(title: string, slice: string): Pick<RouteObject, 'element'> {
-  return { element: <PlaceholderPage title={title} slice={slice} /> };
 }
 
 const appRoutes: RouteObject[] = [
@@ -41,10 +36,34 @@ const appRoutes: RouteObject[] = [
       (m) => m.ProfileEditPage,
     ),
   },
-  { path: 'profiles/:profileId/generate', ...placeholder('Generate growth plan', 'FE-4') },
-  { path: 'plans/:planId/progress', ...placeholder('Research progress', 'FE-4') },
-  { path: 'plans/:planId', ...placeholder('Growth plan', 'FE-5') },
-  { path: 'experiments', ...placeholder('Experiments', 'FE-6b') },
+  {
+    path: 'profiles/:profileId/generate',
+    ...page(
+      () => import('@/features/plans/GeneratePage'),
+      (m) => m.GeneratePage,
+    ),
+  },
+  {
+    path: 'plans/:planId/progress',
+    ...page(
+      () => import('@/features/plans/ProgressPage'),
+      (m) => m.ProgressPage,
+    ),
+  },
+  {
+    path: 'plans/:planId',
+    ...page(
+      () => import('@/features/plans/PlanPage'),
+      (m) => m.PlanPage,
+    ),
+  },
+  {
+    path: 'experiments',
+    ...page(
+      () => import('@/features/experiments/ExperimentsHubPage'),
+      (m) => m.ExperimentsHubPage,
+    ),
+  },
   { path: 'evaluate', element: <EvaluationGate /> },
 ];
 
@@ -66,8 +85,20 @@ export const routes: RouteObject[] = [
               (m) => m.LandingPage,
             ),
           },
-          { path: 'sample', ...placeholder('Sample plan', 'FE-5') },
-          { path: 'offline', ...placeholder("You're offline", 'FE-7') },
+          {
+            path: 'sample',
+            ...page(
+              () => import('@/features/plans/SamplePlanPage'),
+              (m) => m.SamplePlanPage,
+            ),
+          },
+          {
+            path: 'offline',
+            ...page(
+              () => import('@/features/pwa/OfflinePage'),
+              (m) => m.OfflinePage,
+            ),
+          },
         ],
       },
       {

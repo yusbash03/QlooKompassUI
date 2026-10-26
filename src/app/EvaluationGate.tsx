@@ -1,8 +1,21 @@
-import { useEvaluationEnabled } from '@/shared/api/useMeta';
+import { lazy, Suspense } from 'react';
+import { useEvaluationEnabled, useMeta } from '@/shared/api/useMeta';
+import { FullPageStatus } from '@/shared/ui/FullPageStatus';
 import { NotFoundPage } from './NotFoundPage';
-import { PlaceholderPage } from './PlaceholderPage';
+
+const EvaluationPage = lazy(() =>
+  import('@/features/evaluation/EvaluationPage').then((m) => ({ default: m.EvaluationPage })),
+);
 
 /** Evaluation is invisible (404) unless both the server and build flags are on (FE-01 §3). */
 export function EvaluationGate() {
-  return useEvaluationEnabled() ? <PlaceholderPage title="Evaluation" slice="FE-8" /> : <NotFoundPage />;
+  const meta = useMeta();
+  const enabled = useEvaluationEnabled();
+  if (meta.isPending) return <FullPageStatus label="Loading…" />;
+  if (!enabled) return <NotFoundPage embedded />;
+  return (
+    <Suspense fallback={<FullPageStatus label="Loading…" />}>
+      <EvaluationPage />
+    </Suspense>
+  );
 }

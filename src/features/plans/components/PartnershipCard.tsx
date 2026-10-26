@@ -12,7 +12,8 @@ export function PartnershipCard({ partnership }: { partnership: Collaboration })
   return (
     <article
       id={partnership.id}
-      className="flex h-full scroll-mt-24 flex-col rounded-(--radius-card) border border-border bg-surface p-5 md:p-6"
+      tabIndex={-1}
+      className="flex h-full scroll-mt-24 flex-col rounded-(--radius-card) border border-border bg-surface p-5 outline-none focus-visible:ring-2 focus-visible:ring-focus md:p-6"
     >
       <header className="flex items-start justify-between gap-3">
         <div>

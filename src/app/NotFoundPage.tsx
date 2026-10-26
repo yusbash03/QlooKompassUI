@@ -2,11 +2,14 @@ import { Link } from 'react-router';
 import { buttonClasses } from '@/shared/ui/button-classes';
 import { CompassIllustration, Textile } from '@/shared/ui/Textile';
 
-export function NotFoundPage() {
+/** `embedded` = rendered inside a layout that already has the `<main>` landmark (e.g. the app shell). */
+export function NotFoundPage({ embedded = false }: { embedded?: boolean }) {
+  const Root = embedded ? 'div' : 'main';
   return (
-    <main
-      id="main"
-      className="relative flex min-h-[70dvh] flex-col items-center justify-center gap-4 overflow-hidden px-4 text-center"
+    <Root
+      id={embedded ? undefined : 'main'}
+      tabIndex={embedded ? undefined : -1}
+      className="relative flex min-h-[70dvh] flex-col items-center justify-center gap-4 overflow-hidden px-4 text-center outline-none"
     >
       <Textile />
       <CompassIllustration rotate={-110} className="relative" />
@@ -18,6 +21,6 @@ export function NotFoundPage() {
       <Link to="/" className={`relative ${buttonClasses()}`}>
         Back to home
       </Link>
-    </main>
+    </Root>
   );
 }

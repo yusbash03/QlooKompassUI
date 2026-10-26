@@ -49,4 +49,5 @@ only, re-implemented with our tokens (FE-3); never imported directly.
 npm run dev | npm run build | npm run preview
 npm run typecheck | npm run lint | npm run test | npm run test:e2e
 npm run gen:api
+npm run mock-api   # stand-in API on :5299 (the MSW fake backend over HTTP); Playwright starts it itself
 ```

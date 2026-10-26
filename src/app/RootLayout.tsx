@@ -1,5 +1,7 @@
 import { Outlet, ScrollRestoration } from 'react-router';
 import { AuthProvider } from '@/features/auth/AuthProvider';
+import { InstallPrompt } from '@/features/pwa/InstallPrompt';
+import { UpdatePrompt } from '@/features/pwa/UpdatePrompt';
 import { SkipLink } from '@/shared/layout/SkipLink';
 
 // AuthProvider lives inside the router so auth-aware screens can navigate; QueryClient sits above it (providers.tsx).
@@ -10,6 +12,8 @@ export function RootLayout() {
       <SkipLink />
       <Outlet />
       <ScrollRestoration />
+      <UpdatePrompt />
+      <InstallPrompt />
     </AuthProvider>
   );
 }

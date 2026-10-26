@@ -8,7 +8,8 @@ interface EmptyStateProps {
   icon?: LucideIcon;
   children?: ReactNode;
   action?: ReactNode;
-  headingLevel?: 'h2' | 'h3';
+  /** `h1` when the empty state is the whole page (offline screens). */
+  headingLevel?: 'h1' | 'h2' | 'h3';
 }
 
 export function EmptyState({ icon: Icon, title, children, action, headingLevel: Heading = 'h2' }: EmptyStateProps) {

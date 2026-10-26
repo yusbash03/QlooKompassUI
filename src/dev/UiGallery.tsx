@@ -33,7 +33,7 @@ import { sampleReport } from './fixtures';
  */
 export function UiGallery() {
   return (
-    <main id="main" className="min-h-dvh bg-bg">
+    <main id="main" tabIndex={-1} className="min-h-dvh bg-bg outline-none">
       <header className="border-b border-border px-6 py-5">
         <Logo />
         <h1 className="mt-3 text-[28px] text-ink">Component gallery</h1>

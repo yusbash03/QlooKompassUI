@@ -10,9 +10,12 @@
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "mock-api": "node e2e/mock-api/server.ts",
+    "icons": "node scripts/generate-icons.mjs",
     "gen:api": "openapi-typescript MdFiles/contracts/openapi.yaml -o src/shared/api/schema.d.ts"
   },
   "dependencies": {
@@ -23,7 +26,6 @@
     "@radix-ui/react-tooltip": "^1.4.1",
     "@tanstack/react-query": "^5.104.5",
     "clsx": "^2.1.1",
-    "idb-keyval": "^6.3.0",
     "lucide-react": "^1.61.0",
     "openapi-fetch": "^0.17.0",
     "react": "^19.3.1",

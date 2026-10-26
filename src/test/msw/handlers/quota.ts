@@ -8,4 +8,19 @@ export const quotaFixture: components['schemas']['QuotaDto'] = {
   resetsAt: '2026-10-26T00:00:00Z',
 };
 
-export const quotaHandlers = [http.get('*/api/v1/me/quota', () => HttpResponse.json(quotaFixture))];
+/** Remaining generations today; the fake growth-plans API spends from it. Reset after each test. */
+export const quotaState = { remainingToday: quotaFixture.remainingToday };
+
+export function resetQuotaState(): void {
+  quotaState.remainingToday = quotaFixture.remainingToday;
+}
+
+export const quotaHandlers = [
+  http.get('*/api/v1/me/quota', () =>
+    HttpResponse.json({
+      ...quotaFixture,
+      remainingToday: quotaState.remainingToday,
+      usedToday: quotaFixture.dailyLimit - quotaState.remainingToday,
+    }),
+  ),
+];

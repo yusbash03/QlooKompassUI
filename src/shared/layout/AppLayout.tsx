@@ -106,7 +106,7 @@ export function AppLayout() {
         <TopBar />
         <OfflineBanner />
         <MockModeBanner />
-        <main id="main" className="flex-1">
+        <main id="main" tabIndex={-1} className="flex-1 outline-none">
           <Outlet />
         </main>
       </div>

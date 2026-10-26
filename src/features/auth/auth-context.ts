@@ -5,7 +5,8 @@ import type { User } from './tokenStore';
 export type LoginRequest = components['schemas']['LoginRequest'];
 export type RegisterRequest = components['schemas']['RegisterRequest'];
 
-export type AuthStatus = 'loading' | 'authenticated' | 'anonymous';
+/** `unreachable`: the session couldn't be checked because there is no connection (retried when it returns). */
+export type AuthStatus = 'loading' | 'authenticated' | 'anonymous' | 'unreachable';
 
 export interface AuthContextValue {
   status: AuthStatus;

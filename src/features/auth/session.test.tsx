@@ -1,7 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
+import { http, HttpResponse } from 'msw';
 import { offlineDbName } from '@/features/offline/offlineStore';
 import { IDEMPOTENCY_KEY_PREFIX } from '@/shared/lib/idempotency';
 import { authState, testUser, VALID_PASSWORD } from '@/test/msw/handlers/auth';
+import { server } from '@/test/msw/server';
+import { setOnline } from '@/test/online';
 import { renderRoute } from '@/test/renderRoute';
 import { tokenStore } from './tokenStore';
 
@@ -115,5 +118,23 @@ describe('sign-out', () => {
 
     await waitFor(() => expect(tokenStore.get()).toBeNull());
     await waitFor(() => expect(router.state.location.pathname).toBe('/sign-in'));
+  });
+});
+
+describe('starting offline', () => {
+  afterEach(() => setOnline(true));
+
+  it('explains the session can’t be restored yet, then restores it when the connection returns', async () => {
+    authState.refreshValid = true;
+    server.use(http.post('*/api/v1/auth/refresh', () => HttpResponse.error()));
+    setOnline(false);
+    const { router } = renderRoute('/app/plans');
+
+    expect(await screen.findByRole('heading', { level: 1, name: 'You’re offline' })).toBeInTheDocument();
+    expect(router.state.location.pathname).toBe('/app/plans');
+
+    server.resetHandlers();
+    setOnline(true);
+    expect(await screen.findByRole('heading', { level: 1, name: 'Plans' })).toBeInTheDocument();
   });
 });

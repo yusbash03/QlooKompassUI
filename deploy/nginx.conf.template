@@ -1,0 +1,47 @@
+# Rendered by the nginx image's envsubst step: only ${API_UPSTREAM} is substituted.
+server {
+  listen 80;
+  server_name _;
+  root /usr/share/nginx/html;
+
+  gzip on;
+  gzip_types text/css application/javascript application/json application/manifest+json image/svg+xml;
+
+  location = /healthz {
+    access_log off;
+    return 200 "ok";
+  }
+
+  # Same-origin API so the HttpOnly refresh cookie works (02-security §2).
+  location /api/ {
+    proxy_pass ${API_UPSTREAM};
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_read_timeout 60s;
+  }
+
+  # Hashed build output never changes: cache for a year.
+  location /assets/ {
+    include /etc/nginx/snippets/security-headers.conf;
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+    try_files $uri =404;
+  }
+
+  location = /manifest.webmanifest {
+    include /etc/nginx/snippets/security-headers.conf;
+    default_type application/manifest+json;
+    add_header Cache-Control "no-cache" always;
+    try_files $uri =404;
+  }
+
+  # Everything else — index.html, sw.js, icons and the SPA fallback — is revalidated on every load, so a new
+  # deployment (and a new service worker) is picked up immediately.
+  location / {
+    include /etc/nginx/snippets/security-headers.conf;
+    add_header Cache-Control "no-cache" always;
+    try_files $uri $uri/ /index.html;
+  }
+}

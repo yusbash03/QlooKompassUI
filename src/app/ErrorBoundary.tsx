@@ -13,7 +13,11 @@ export function RouteErrorBoundary() {
   const traceId = isAppError(error) ? error.traceId : null;
 
   return (
-    <main id="main" className="flex min-h-[70dvh] flex-col items-center justify-center gap-4 px-4 text-center">
+    <main
+      id="main"
+      tabIndex={-1}
+      className="flex min-h-[70dvh] flex-col items-center justify-center gap-4 px-4 text-center outline-none"
+    >
       <CircleAlert aria-hidden className="size-12 text-danger" />
       <h1 className="text-3xl text-ink">Something went wrong</h1>
       <p className="max-w-md text-ink-muted">
