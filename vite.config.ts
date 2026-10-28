@@ -9,7 +9,9 @@ import { pwaOptions } from './build/pwa.ts';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
-  const proxyTarget = env.VITE_DEV_API_PROXY_TARGET || 'http://localhost:5206';
+  // Local backend (dotnet run http profile):
+  // const proxyTarget = env.VITE_DEV_API_PROXY_TARGET || 'http://localhost:5206';
+  const proxyTarget = env.VITE_DEV_API_PROXY_TARGET || 'https://kompass-api-hczs.onrender.com';
 
   return {
     plugins: [envSecretGuard(), react(), tailwindcss(), VitePWA(pwaOptions)],

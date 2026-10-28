@@ -4,9 +4,10 @@ This repo is the frontend only. Project-wide rules (non-negotiables, naming, how
 Specs: `MdFiles/docs/frontend/FE-01-pwa-spec.md`, `MdFiles/docs/frontend/FE-02-build-plan.md`, `MdFiles/design/magic-patterns.md`,
 `MdFiles/contracts/openapi.yaml` (regenerate types with `npm run gen:api` whenever it changes — never hand-edit `schema.d.ts`).
 
-The backend lives in `../../backend/QlooKompass` (.NET, `dotnet run` http profile on `http://localhost:5206`). Its spec pack copy of the
+The backend lives in `../../backend/QlooKompass` (.NET), deployed at `https://kompass-api-hczs.onrender.com`
+(local: `dotnet run` http profile on `http://localhost:5206`). Its spec pack copy of the
 contract is `MdDocs/contracts/openapi.yaml`; when it changes, copy it to `MdFiles/contracts/openapi.yaml` and run `npm run gen:api`.
-The Vite dev server proxies `/api` → `VITE_DEV_API_PROXY_TARGET` (default `http://localhost:5206`).
+The Vite dev server proxies `/api` → `VITE_DEV_API_PROXY_TARGET` (default `https://kompass-api-hczs.onrender.com`; local backend: `http://localhost:5206`).
 
 Layout: the Vite app sits at the repo root (FE-01 §2's `frontend/` = this repo root). `Design/` holds design exports — reference
 only, re-implemented with our tokens (FE-3); never imported directly.

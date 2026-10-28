@@ -9,7 +9,8 @@ contributors (and Claude) are in `CLAUDE.md`.
 ```bash
 npm ci
 cp .env.example .env.local      # public build flags only — nothing secret ever goes in VITE_*
-npm run dev                     # http://localhost:5173, proxies /api → VITE_DEV_API_PROXY_TARGET (default :5206)
+npm run dev                     # http://localhost:5173, proxies /api → VITE_DEV_API_PROXY_TARGET (default https://kompass-api-hczs.onrender.com)
+# Local backend instead: VITE_DEV_API_PROXY_TARGET=http://localhost:5206 npm run dev
 ```
 
 The backend doesn't serve every endpoint yet. To run the whole app without it, start the stand-in API (the same fake backend the
@@ -39,10 +40,11 @@ CI (`.github/workflows/frontend.yml`) runs the checks, the e2e suite and the ima
 
 ```bash
 docker build -t kompass-web .                       # --build-arg VITE_ENABLE_EVALUATION=true to show Evaluation mode
-docker run -p 5173:80 -e API_UPSTREAM=http://host.docker.internal:5206 kompass-web
+docker run -p 5173:80 kompass-web                    # proxies /api to the Render backend
+# docker run -p 5173:80 -e API_UPSTREAM=http://host.docker.internal:5206 kompass-web   # local backend
 ```
 
-nginx (`deploy/`) serves the build and proxies `/api/` to `API_UPSTREAM` (default `http://api:8080`, the compose service), so the
+nginx (`deploy/`) serves the build and proxies `/api/` to `API_UPSTREAM` (default `https://kompass-api-hczs.onrender.com`; `http://api:8080` for the compose service), so the
 API is same-origin and the HttpOnly refresh cookie works. Hashed `/assets/*` are cached for a year; `index.html`, `sw.js`,
 `manifest.webmanifest` and client routes are `no-cache`, so a deploy reaches users on their next load (the app then offers
 "Reload" for the new version). Every response carries the CSP in `deploy/security-headers.conf`: scripts from `'self'` only,
