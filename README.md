@@ -4,11 +4,40 @@ Cultural growth plans for small fashion brands, grounded in Qloo evidence. React
 `../../backend/QlooKompass`. Specs live in `MdFiles/` (start with `MdFiles/docs/frontend/FE-01-pwa-spec.md`); project rules for
 contributors (and Claude) are in `CLAUDE.md`.
 
+## Setup
+
+### Prerequisites
+
+- **Node.js 24+** and npm (CI and the Docker image use Node 24; `npm run mock-api` runs a `.ts` file directly, which needs
+  Node's built-in type stripping)
+- Git
+- Optional: Docker (to build/run the production image), the .NET backend (`../../backend/QlooKompass`, .NET SDK) if you want to run the
+  API locally
+
+### Install
+
+```bash
+git clone https://github.com/yusbash03/QlooKompassUI.git
+cd QlooKompassUI
+npm ci
+cp .env.example .env.local                # public build flags only — nothing secret ever goes in VITE_*
+npx playwright install --with-deps chromium   # only needed for npm run test:e2e
+```
+
+### Environment
+
+All settings are public build-time flags (`.env.example`); the build fails if a `VITE_*` name looks like a secret.
+
+| Variable                    | Default                                 | Purpose                                                                       |
+| --------------------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
+| `VITE_API_BASE_URL`         | _(empty)_                               | Leave empty so the app calls same-origin `/api` (the refresh cookie needs it) |
+| `VITE_APP_NAME`             | `Kulture Compass`                       | Display name                                                                  |
+| `VITE_ENABLE_EVALUATION`    | `false`                                 | Show Evaluation mode                                                          |
+| `VITE_DEV_API_PROXY_TARGET` | `https://kompass-api-hczs.onrender.com` | Dev only: where the Vite `/api` proxy forwards to                             |
+
 ## Run it
 
 ```bash
-npm ci
-cp .env.example .env.local      # public build flags only — nothing secret ever goes in VITE_*
 npm run dev                     # http://localhost:5173, proxies /api → VITE_DEV_API_PROXY_TARGET (default https://kompass-api-hczs.onrender.com)
 # Local backend instead: VITE_DEV_API_PROXY_TARGET=http://localhost:5206 npm run dev
 ```
@@ -72,3 +101,7 @@ Serve it over HTTPS in production — service workers and install prompts need a
   and the user can't be identified until the session is restored. The session is restored automatically when the connection
   returns. Copies remain readable offline in any tab that was already signed in.
 - The stand-in API keeps a single in-memory session for every client, so the e2e suite runs with one worker.
+
+## License
+
+[MIT](LICENSE) © 2026 Yusuf Bashir
