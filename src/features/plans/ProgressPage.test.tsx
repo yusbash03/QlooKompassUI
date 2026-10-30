@@ -1,7 +1,9 @@
 import { screen, waitFor, within } from '@testing-library/react';
+import { delay, http } from 'msw';
 import { authState } from '@/test/msw/handlers/auth';
 import { completed, seedPlan, statusAt } from '@/test/msw/handlers/growthPlans';
 import { seedProfile } from '@/test/msw/handlers/profiles';
+import { server } from '@/test/msw/server';
 import { renderRoute } from '@/test/renderRoute';
 import { pollInterval, toProgressSteps } from './stages';
 
@@ -38,11 +40,29 @@ describe('ProgressPage', () => {
   it('keeps polling and opens the plan once it completes', async () => {
     const profile = seedProfile();
     const id = seedPlan(profile.id, (planId) => [statusAt(planId, 4), completed(planId)]);
+    // Real-network latency on the plan GET, so the hand-off races a slow fetch (as against the real API).
+    let planGets = 0;
+    server.use(
+      http.get('*/api/v1/growth-plans/:id', async () => {
+        planGets += 1;
+        await delay(300);
+      }),
+    );
     const { router } = renderRoute(`/app/plans/${id}/progress`);
+    const navigations: string[] = [];
+    router.subscribe((state) => {
+      if (state.navigation.state === 'loading') navigations.push(state.navigation.location.pathname);
+    });
 
     await screen.findByText(/Writing recommendations/);
     // The second poll (2 s later) reports Completed → replace-navigate to the report.
     await waitFor(() => expect(router.state.location.pathname).toBe(`/app/plans/${id}`), { timeout: 6000 });
+    await screen.findByRole('heading', { level: 1, name: 'Eko Thread Co.' }, { timeout: 3000 });
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    // One hand-off, no refetch storm, and no bounce back to progress (this used to loop and flicker).
+    expect(navigations).toEqual([`/app/plans/${id}`]);
+    expect(planGets).toBeLessThanOrEqual(2);
+    expect(router.state.location.pathname).toBe(`/app/plans/${id}`);
   });
 
   it('shows the user-safe failure reason with Edit brief and Try again', async () => {

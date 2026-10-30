@@ -74,6 +74,8 @@ export function PlanPage() {
 
   const data = plan.data;
   if (data.status === 'Queued' || data.status === 'Running' || data.status === 'Failed') {
+    // A cached unfinished copy may be stale (the plan just completed): wait for the refetch before redirecting.
+    if (plan.isFetching) return <FullPageStatus label="Loading your plan…" />;
     return <Navigate to={`/app/plans/${planId}/progress`} replace />;
   }
   return (

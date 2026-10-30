@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import { useCurrentUser } from '@/features/auth/auth-context';
 import { isAppError } from '@/shared/api/problem';
@@ -19,20 +19,26 @@ export function ProgressPage() {
   const { planId = '' } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const keys = queryKeys.user(useCurrentUser().id);
+  const userId = useCurrentUser().id;
   const status = usePlanStatus(planId);
   const plan = usePlan(planId);
 
   const current = status.data?.status;
   const done = current === 'Completed' || current === 'CompletedWithLimitations';
 
+  // Hand off to the report exactly once. Re-running this on every render (new query-key objects, refetches) restarted the
+  // navigation and cancelled the plan fetch in a loop — the page flickered and showed the offline state.
+  const handedOff = useRef(false);
   useEffect(() => {
-    if (!done) return;
-    // The plan's content only exists once it's terminal: drop any early copy, then open the report.
-    void queryClient.invalidateQueries({ queryKey: keys.plan(planId) });
+    if (!done || handedOff.current) return;
+    handedOff.current = true;
+    const keys = queryKeys.user(userId);
+    // The plan's content only exists once it's terminal: drop the early (Running) copy, then open the report. Removing
+    // rather than invalidating matters — PlanPage would otherwise see the stale Running copy and bounce straight back.
+    queryClient.removeQueries({ queryKey: keys.plan(planId), exact: true });
     void queryClient.invalidateQueries({ queryKey: [...keys.all, 'profiles'] });
     navigate(`/app/plans/${planId}`, { replace: true });
-  }, [done, navigate, planId, queryClient, keys]);
+  }, [done, navigate, planId, queryClient, userId]);
 
   if (status.isPending) return <FullPageStatus label="Checking your plan…" />;
   if (status.isError) {
